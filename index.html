@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="description" content="Associez vos images à un QR Code, même hors ligne.">
+  <title>QR Image</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="images/android-chrome-192x192.png">
+  <link rel="apple-touch-icon" href="images/android-chrome-192x192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>QR Image</h1>
+    <nav>
+      <a href="index.html" class="active">Créer</a>
+      <a href="scanner.html">Scanner</a>
+    </nav>
+    <span id="status" class="status">En ligne</span>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>1. Importer une image</h2>
+      <label id="dropzone" class="dropzone" for="file-input">
+        <input type="file" id="file-input" accept="image/*" hidden>
+        <span class="dropzone-text">Cliquez ou déposez une image ici</span>
+        <img id="preview" class="preview" alt="" hidden>
+      </label>
+      <p id="file-info" class="muted"></p>
+      <label class="field">
+        Qualité de l'image dans le QR Code
+        <select id="quality">
+          <option value="low">Basse — QR Code simple à scanner</option>
+          <option value="medium" selected>Moyenne</option>
+          <option value="high">Haute — QR Code très dense</option>
+        </select>
+      </label>
+      <button id="save-btn" class="btn primary" disabled>Enregistrer et générer le QR Code</button>
+    </section>
+
+    <section id="result" class="card" hidden>
+      <h2>2. Votre QR Code</h2>
+      <div class="qr-wrapper">
+        <div id="qrcode" class="qrcode"></div>
+      </div>
+      <p class="muted small" id="qr-id"></p>
+      <p class="muted small" id="qr-host-warning" hidden>
+        ⚠ Application ouverte en <strong>localhost</strong> : le lien du QR Code ne fonctionnera pas
+        avec l'appareil photo d'un téléphone. Le scanner de l'application installée sur le téléphone,
+        lui, affichera bien l'image. Hébergez l'application en HTTPS pour que le lien fonctionne.
+      </p>
+      <div class="actions">
+        <button id="download-btn" class="btn primary">Télécharger le QR Code</button>
+        <a href="scanner.html" class="btn">Ouvrir le scanner</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Images enregistrées</h2>
+      <p id="empty" class="muted">Aucune image pour le moment.</p>
+      <ul id="gallery" class="gallery"></ul>
+    </section>
+  </main>
+
+  <script src="lib/qrcode.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

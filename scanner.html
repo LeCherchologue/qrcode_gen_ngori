@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2563eb">
+  <title>Scanner · QR Image</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="images/android-chrome-192x192.png">
+  <link rel="apple-touch-icon" href="images/android-chrome-192x192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>QR Image</h1>
+    <nav>
+      <a href="index.html">Créer</a>
+      <a href="scanner.html" class="active">Scanner</a>
+    </nav>
+    <span id="status" class="status">En ligne</span>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Scanner un QR Code</h2>
+      <div id="reader" class="reader" hidden>
+        <video id="video" playsinline muted></video>
+        <div class="reader-frame"></div>
+      </div>
+      <div class="actions">
+        <button id="start-btn" class="btn primary">Démarrer la caméra</button>
+        <button id="stop-btn" class="btn" hidden>Arrêter</button>
+        <label class="btn" for="scan-file">
+          Depuis un fichier
+          <input type="file" id="scan-file" accept="image/*" hidden>
+        </label>
+      </div>
+      <p id="scan-message" class="muted"></p>
+    </section>
+
+    <section id="found" class="card" hidden>
+      <h2>Image retrouvée</h2>
+      <img id="found-image" class="found-image" alt="">
+      <p id="found-info" class="muted"></p>
+      <div class="actions">
+        <a id="found-download" class="btn primary" download>Télécharger l'image</a>
+        <button id="rescan-btn" class="btn">Scanner un autre code</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="lib/jsQR.js"></script>
+  <script type="module" src="js/scanner.js"></script>
+</body>
+</html>
